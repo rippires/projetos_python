@@ -1,9 +1,33 @@
 
 import os
+import random
 
-palavra_secreta = 'pedrita'
+
+def carrega_palavra_secreta():
+
+
+    palavras = open('palavras.txt', 'r')
+    palavra = []
+
+    for linha in palavras:
+        linha = linha.strip()
+        palavra.append(linha)
+        
+
+    palavras.close()
+
+    numero = random.randrange(0, len(palavra))
+   
+                                    
+    palavra_secreta_selecionada = palavra[numero]
+    return(palavra_secreta_selecionada.lower())
+
+palavra_secreta = carrega_palavra_secreta()
+
 letras_acertadas = ''
 numero_tentativas = len(palavra_secreta)
+
+
 
 print('*****************************************************************************')
 print('*************************BEM VINDO AO JOGO DA FORCA!*************************')
@@ -38,6 +62,7 @@ while True:
         print('VOCÊ GANHOU!! PARABÉNS!')
         print('A palavara secreta era: ', palavra_secreta.upper())
         print('Tentativas: ', numero_tentativas)
+        break
 
     if numero_tentativas == 0:
         print('VOCÊ PERDEU!!!')
